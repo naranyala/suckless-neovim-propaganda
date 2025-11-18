@@ -14,8 +14,9 @@
 -- require("lazy_scala_jvm") -- BEST
 -- require("lazy_python_dart_fsharp") -- BEST
 
+require("lazy_tailored_cprogramming")
 -- require("lazy_goto_definition") -- BEST
-require("lazy_tpope_stack")
+-- require("lazy_tpope_stack")
 -- require("lazy_sophisticated")
 -- require("lazy_alternative")
 -- require("lazy_minimalism")
@@ -95,6 +96,9 @@ vim.api.nvim_create_autocmd("FileType", {
 require("lib_theme_paperlike_night").setup()
 -- require("lib_keybindings")
 
+
+-- require("lib_simplenav")
+-- require("lib_simplenav").setup()
 
 require("lib_disable_tabline")
 require("lib_ag_filepicker")
