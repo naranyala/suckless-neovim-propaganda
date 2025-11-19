@@ -1,3 +1,32 @@
+function GoToDefinition()
+    -- Check if an LSP client is attached to the current buffer
+    if next(vim.lsp.get_active_clients()) then
+        -- Execute the built-in LSP command to go to definition
+        vim.lsp.buf.definition()
+    else
+        -- Fallback to Ctags-style navigation if no LSP is available
+        -- This uses the standard Vim tag search command
+        vim.cmd('tag ' .. vim.fn.expand('<cword>'))
+    end
+end
+
+function FindReferences()
+    -- Check if an LSP client is attached
+    if next(vim.lsp.get_active_clients()) then
+        -- Execute the built-in LSP command to find references
+        vim.lsp.buf.references()
+    else
+        print("No active LSP client for finding references.")
+    end
+end
+
+local opts = { noremap = true, silent = true }
+
+-- Go to Definition
+vim.keymap.set('n', 'gd', GoToDefinition, opts)
+
+-- Find References
+vim.keymap.set('n', 'gr', FindReferences, opts)
 
 function QuickGrep()
   local word = vim.fn.input("Grep for > ")

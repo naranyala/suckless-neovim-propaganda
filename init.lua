@@ -16,7 +16,8 @@ vim.g.loaded_nvim_web_devicons = 1
 -- require("lazy_scala_jvm") -- BEST
 -- require("lazy_python_dart_fsharp") -- BEST
 
-require("lazy_rustcode_focused")
+require("lazy_c_asm_toolchain")
+-- require("lazy_rustcode_focused")
 -- require("lazy_tailored_cprogramming")
 -- require("lazy_goto_definition") -- BEST
 -- require("lazy_tpope_stack")
@@ -67,7 +68,7 @@ require("on_demand_fn.ok_vue_snippets")
 require("on_demand_fn.ok_c99_snippets")
 
 -- require("lib.theme_paperlike_day").setup()
-require("lib.theme_paperlike_night").setup()
+-- require("lib.theme_paperlike_night").setup()
 -- require("lib.keybindings")
 -- require("lib.simplenav")
 -- require("lib.simplenav").setup()
