@@ -1,14 +1,16 @@
 -- SINGLE FILE NEOVIM CONFIG
 
--- WAJIB: lazy.nvim, mason, treesitter, harpoon, oil, fzf, rg
+vim.o.sidescroll = 0
+vim.o.sidescrolloff = 0
+vim.opt.clipboard = "unnamedplus" -- clipboard support
+vim.o.wrap = true                 -- Enable line wrapping
+vim.o.textwidth = 80              -- Optional: Set max text width for formatting
+vim.o.termguicolors = true
+vim.g.man_horiz = 1          -- force horizontal split
+vim.g.man_split_mode = "rightbelow"  -- place it on the right
+vim.opt.splitright = true  -- new vertical splits go to the right
+vim.g.loaded_nvim_web_devicons = 1
 
--- TODO: hello
-
--- require("lazy_pycpp_v1")
--- require("lazy_pycpp_v2")
--- require("lazy_pycpp_v3")
--- require("lazy_pycpp_v4")
---
 -- require("lazy_jsx_frontend") -- BEST
 -- require("lazy_ocaml_first") -- BEST
 -- require("lazy_scala_jvm") -- BEST
@@ -58,53 +60,21 @@ require("lazy_tailored_cprogramming")
 -- require("lazy_alternative") -- BUG
 -- require("lazy_future") -- BUG
 
--- Prevent horizontal scrolling
-vim.o.sidescroll = 0
-vim.o.sidescrolloff = 0
 
-vim.opt.clipboard = "unnamedplus" -- clipboard support
-vim.o.wrap = true                 -- Enable line wrapping
-vim.o.textwidth = 80              -- Optional: Set max text width for formatting
--- vim.o.colorcolumn = "+1"          -- Optional: Add a vertical guideline
-
--- require("theme_paperlike").setup()
--- require("theme_paperlike_dark").setup()
-
--- vim.cmd("colorscheme paperlike")
-
-vim.o.termguicolors = true
-
--- make every man pages open horizontally splitted
-vim.g.man_horiz = 1          -- force horizontal split
-vim.g.man_split_mode = "rightbelow"  -- place it on the right
-
-vim.opt.splitright = true  -- new vertical splits go to the right
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "man" },
-  callback = function()
-    -- If only one window, create a vsplit first
-    if vim.fn.winnr('$') == 1 then
-      vim.cmd('vsplit')
-    end
-    -- Move the current buffer (man/help) to the far right
-    vim.cmd('wincmd L')
-  end,
-})
+require("on_demand_fn.ok_features")
+require("on_demand_fn.ok_vue_snippets")
+require("on_demand_fn.ok_c99_snippets")
 
 -- require("lib_theme_paperlike_day").setup()
 require("lib_theme_paperlike_night").setup()
 -- require("lib_keybindings")
-
-
 -- require("lib_simplenav")
 -- require("lib_simplenav").setup()
-
+require("lib_bookmark").setup()
 require("lib_disable_tabline")
 require("lib_ag_filepicker")
 require("lib_todo_search").setup()
 -- require("lib_grepnav").setup()
-
 require("lib_grepnav").setup({
   engine_priority = { "rg" },  -- never fall back to plain grep
   root_markers = { ".git", "pyproject.toml", ".root" },
@@ -114,5 +84,4 @@ require("lib_grepnav").setup({
   mappings = true,
 })
 
--- Disable nvim-web-devicons globally
-vim.g.loaded_nvim_web_devicons = 1
+

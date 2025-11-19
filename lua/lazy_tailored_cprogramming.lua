@@ -288,6 +288,7 @@ require("lazy").setup({
 
     },
     keys = {
+      -- { "<leader><leader>", "<cmd>Oil<cr>", desc = "Open file explorer" },
       { "<leader>e", "<cmd>Oil<cr>", desc = "Open file explorer" },
       { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
     },
@@ -302,6 +303,17 @@ require("lazy").setup({
           ["<C-s>"] = "actions.select_split",
           ["<C-v>"] = "actions.select_vsplit",
         },
+      })
+    end,
+  },
+
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("which-key").setup({
+        window = { border = "rounded" },
       })
     end,
   },
