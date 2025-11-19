@@ -2,13 +2,13 @@
 
 vim.o.sidescroll = 0
 vim.o.sidescrolloff = 0
-vim.opt.clipboard = "unnamedplus" -- clipboard support
-vim.o.wrap = true                 -- Enable line wrapping
-vim.o.textwidth = 80              -- Optional: Set max text width for formatting
+vim.opt.clipboard = "unnamedplus"   -- clipboard support
+vim.o.wrap = true                   -- Enable line wrapping
+vim.o.textwidth = 80                -- Optional: Set max text width for formatting
 vim.o.termguicolors = true
-vim.g.man_horiz = 1          -- force horizontal split
-vim.g.man_split_mode = "rightbelow"  -- place it on the right
-vim.opt.splitright = true  -- new vertical splits go to the right
+vim.g.man_horiz = 1                 -- force horizontal split
+vim.g.man_split_mode = "rightbelow" -- place it on the right
+vim.opt.splitright = true           -- new vertical splits go to the right
 vim.g.loaded_nvim_web_devicons = 1
 
 -- require("lazy_jsx_frontend") -- BEST
@@ -16,7 +16,8 @@ vim.g.loaded_nvim_web_devicons = 1
 -- require("lazy_scala_jvm") -- BEST
 -- require("lazy_python_dart_fsharp") -- BEST
 
-require("lazy_tailored_cprogramming")
+require("lazy_rustcode_focused")
+-- require("lazy_tailored_cprogramming")
 -- require("lazy_goto_definition") -- BEST
 -- require("lazy_tpope_stack")
 -- require("lazy_sophisticated")
@@ -65,23 +66,21 @@ require("on_demand_fn.ok_features")
 require("on_demand_fn.ok_vue_snippets")
 require("on_demand_fn.ok_c99_snippets")
 
--- require("lib_theme_paperlike_day").setup()
-require("lib_theme_paperlike_night").setup()
--- require("lib_keybindings")
--- require("lib_simplenav")
--- require("lib_simplenav").setup()
-require("lib_bookmark").setup()
-require("lib_disable_tabline")
-require("lib_ag_filepicker")
-require("lib_todo_search").setup()
+-- require("lib.theme_paperlike_day").setup()
+require("lib.theme_paperlike_night").setup()
+-- require("lib.keybindings")
+-- require("lib.simplenav")
+-- require("lib.simplenav").setup()
+require("lib.bookmark").setup()
+require("lib.disable_tabline")
+require("lib.ag_filepicker")
+require("lib.todo_search").setup()
 -- require("lib_grepnav").setup()
-require("lib_grepnav").setup({
-  engine_priority = { "rg" },  -- never fall back to plain grep
-  root_markers = { ".git", "pyproject.toml", ".root" },
-  ignore = { ".git", "node_modules", "venv", "build", "*.min.js" },
-  rg_args = "--vimgrep --no-heading --smart-case --type-add 'ts:*.tsx' --type-add 'vue:*.vue'",
-  window_height_ratio = 0.5,
-  mappings = true,
+require("lib.grepnav").setup({
+    engine_priority = { "rg" }, -- never fall back to plain grep
+    root_markers = { ".git", "pyproject.toml", ".root" },
+    ignore = { ".git", "node_modules", "venv", "build", "*.min.js" },
+    rg_args = "--vimgrep --no-heading --smart-case --type-add 'ts:*.tsx' --type-add 'vue:*.vue'",
+    window_height_ratio = 0.5,
+    mappings = true,
 })
-
-

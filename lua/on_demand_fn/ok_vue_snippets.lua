@@ -6,7 +6,7 @@ local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local entry_display = require("telescope.pickers.entry_display")
-
+local previewers = require("telescope.previewers")
 
 
 local function insert_vue_snippet()
@@ -45,17 +45,26 @@ local function insert_vue_snippet()
       finder = finders.new_table({
         results = files,
         entry_maker = function(path)
-          local filename = vim.fn.fnamemodify(path, ":t:r")
+          local filename = vim.fn.fnamemodify(path, ":t")  -- Just filename with extension
           return {
             value = path,
-            path = path,
-            filename = filename,
-            display = make_display,
+            display = filename,
             ordinal = filename,
           }
         end,
       }),
       sorter = conf.generic_sorter({}),
+
+    previewer = previewers.new_buffer_previewer({
+        title = "Snippet Preview",
+        define_preview = function(self, entry, status)
+          -- Read and display the file content
+          conf.buffer_previewer_maker(entry.path, self.state.bufnr, {
+            bufname = self.state.bufname,
+            winid = self.state.winid,
+          })
+        end,
+      }),
       attach_mappings = function(prompt_bufnr, map)
 local insert_selected = function()
   local selection = action_state.get_selected_entry()

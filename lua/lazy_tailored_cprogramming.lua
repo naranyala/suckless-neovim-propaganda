@@ -1,20 +1,20 @@
 -- Neovim Configuration for C Programming
 
 -- General Settings
-vim.opt.number = true              -- Enable line numbers
-vim.opt.relativenumber = true      -- Enable relative line numbers
-vim.opt.tabstop = 4                -- Number of spaces tabs count for
-vim.opt.shiftwidth = 4             -- Size of an indent
-vim.opt.expandtab = true           -- Use spaces instead of tabs
-vim.opt.autoindent = true          -- Auto-indent new lines
-vim.opt.smartindent = true         -- Smart auto-indenting
-vim.opt.ignorecase = true          -- Ignore case in search patterns
-vim.opt.smartcase = true           -- Override 'ignorecase' if search pattern contains uppercase characters
-vim.opt.termguicolors = true       -- Enable 24-bit RGB colors
-vim.opt.signcolumn = "yes"         -- Always show sign column
-vim.opt.updatetime = 250           -- Faster completion
-vim.opt.timeoutlen = 300           -- Timeout for mapped sequences
-vim.opt.clipboard = "unnamedplus"  -- Use system clipboard
+vim.opt.number = true             -- Enable line numbers
+vim.opt.relativenumber = true     -- Enable relative line numbers
+vim.opt.tabstop = 4               -- Number of spaces tabs count for
+vim.opt.shiftwidth = 4            -- Size of an indent
+vim.opt.expandtab = true          -- Use spaces instead of tabs
+vim.opt.autoindent = true         -- Auto-indent new lines
+vim.opt.smartindent = true        -- Smart auto-indenting
+vim.opt.ignorecase = true         -- Ignore case in search patterns
+vim.opt.smartcase = true          -- Override 'ignorecase' if search pattern contains uppercase characters
+vim.opt.termguicolors = true      -- Enable 24-bit RGB colors
+vim.opt.signcolumn = "yes"        -- Always show sign column
+vim.opt.updatetime = 250          -- Faster completion
+vim.opt.timeoutlen = 300          -- Timeout for mapped sequences
+vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 
 -- Leader key setup
 vim.g.mapleader = " "
@@ -199,7 +199,7 @@ require("lazy").setup({
         config = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
-            
+
             cmp.setup({
                 snippet = {
                     expand = function(args)
@@ -241,25 +241,86 @@ require("lazy").setup({
             })
         end,
     },
+    -- Statusline
     {
         "nvim-lualine/lualine.nvim",
+        dependencies = {
+            -- "nvim-tree/nvim-web-devicons"
+        },
         config = function()
-            require('lualine').setup({
+            local function file_stats()
+                local buf = vim.api.nvim_get_current_buf()
+                if vim.api.nvim_buf_get_option(buf, "buftype") ~= "" then
+                    return "" -- Skip for non-file buffers
+                end
+
+                -- Line count
+                local lines = vim.api.nvim_buf_line_count(buf)
+
+                -- Word count
+                local words = 0
+                local content = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+                for _, line in ipairs(content) do
+                    for _ in line:gmatch("%S+") do
+                        words = words + 1
+                    end
+                end
+
+                -- Character count
+                local chars = #table.concat(content, "")
+
+                return string.format("lines %d | words %d | chars %d", lines, words, chars)
+            end
+
+            require("lualine").setup({
                 options = {
-                    icons_enabled = false,
-                    theme = 'auto',
-                    component_separators = { left = '', right = ''},
-                    section_separators = { left = '', right = ''},
+                    theme = "auto",
+                    component_separators = "",
+                    section_separators = "",
                     disabled_filetypes = {},
-                    always_divide_middle = true,
+                    globalstatus = true,
                 },
+                sections = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = {
+                        {
+                            "filename",
+                            path = 2, -- 2 = absolute path
+                            symbols = {
+                                modified = "[+]",
+                                readonly = "[-]",
+                                unnamed = "[No Name]",
+                            },
+                        },
+                    },
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {
+                        { file_stats },
+                    },
+                },
+                inactive_sections = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = {
+                        {
+                            "filename",
+                            path = 2, -- Absolute path for inactive buffers too
+                        },
+                    },
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {},
+                },
+                extensions = {},
             })
         end,
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
         config = function()
-            require'treesitter-context'.setup{
+            require 'treesitter-context'.setup {
                 enable = true,
                 max_lines = 3,
             }
@@ -280,43 +341,43 @@ require("lazy").setup({
     },
 
 
-  -- Oil.nvim (alternative to neo-tree/nvim-tree)
-  {
-    "stevearc/oil.nvim",
-    dependencies = {
-      -- "nvim-tree/nvim-web-devicons"
+    -- Oil.nvim (alternative to neo-tree/nvim-tree)
+    {
+        "stevearc/oil.nvim",
+        dependencies = {
+            -- "nvim-tree/nvim-web-devicons"
 
-    },
-    keys = {
-      -- { "<leader><leader>", "<cmd>Oil<cr>", desc = "Open file explorer" },
-      { "<leader>e", "<cmd>Oil<cr>", desc = "Open file explorer" },
-      { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
-    },
-    config = function()
-      require("oil").setup({
-        columns = { "icon" },
-        view_options = { show_hidden = true },
-        float = { padding = 10 },
-        keymaps = {
-          ["<C-h>"] = false,
-          ["<C-l>"] = false,
-          ["<C-s>"] = "actions.select_split",
-          ["<C-v>"] = "actions.select_vsplit",
         },
-      })
-    end,
-  },
+        keys = {
+            -- { "<leader><leader>", "<cmd>Oil<cr>", desc = "Open file explorer" },
+            { "<leader>e", "<cmd>Oil<cr>", desc = "Open file explorer" },
+            { "-",         "<cmd>Oil<cr>", desc = "Open parent directory" },
+        },
+        config = function()
+            require("oil").setup({
+                columns = { "icon" },
+                view_options = { show_hidden = true },
+                float = { padding = 10 },
+                keymaps = {
+                    ["<C-h>"] = false,
+                    ["<C-l>"] = false,
+                    ["<C-s>"] = "actions.select_split",
+                    ["<C-v>"] = "actions.select_vsplit",
+                },
+            })
+        end,
+    },
 
 
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("which-key").setup({
-        window = { border = "rounded" },
-      })
-    end,
-  },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("which-key").setup({
+                window = { border = "rounded" },
+            })
+        end,
+    },
 
 
     -- END OF PLUGINS
