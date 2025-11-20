@@ -29,11 +29,11 @@ function M.setup(user_config)
   end, { nargs = "?", desc = "Ultimate project grep navigator" })
 
   if config.mappings ~= false then
-    vim.keymap.set("n", "<leader>g", function() 
+    vim.keymap.set("n", "<leader>cg", function() 
       M.grep(vim.fn.expand("<cword>")) 
     end, { desc = "Grep word under cursor" })
     
-    vim.keymap.set("n", "<leader>G", function()
+    vim.keymap.set("n", "<leader>cG", function()
       vim.ui.input({ prompt = "Grep pattern: " }, function(input)
         if input and input ~= "" then M.grep(input) end
       end)

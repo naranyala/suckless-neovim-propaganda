@@ -62,3 +62,60 @@ vim.api.nvim_create_user_command('ToggleCrosshair', ToggleCursorCrosshair, {})
 
 -- Map it to a key (e.g., <leader>ch for "crosshair")
 vim.keymap.set('n', '<leader>ch', ToggleCursorCrosshair, { desc = 'Toggle cursor crosshair' })
+
+
+-- ToggleWrap function to switch between 'wrap' and 'nowrap'
+function ToggleWrap()
+  if vim.wo.wrap then
+    vim.wo.wrap = false
+    print("Line wrapping disabled")
+  else
+    vim.wo.wrap = true
+    print("Line wrapping enabled")
+  end
+end
+
+-- Create a command for the function
+vim.api.nvim_create_user_command("ToggleWrap", ToggleWrap, {})
+
+-- Optional: Add a keymap (e.g., <leader>w)
+vim.keymap.set("n", "<leader>w", ToggleWrap, { desc = "Toggle line wrap" })
+
+
+-- Generate one paragraph of lorem ipsum
+function lorem_paragraph()
+  return [[Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+  culpa qui officia deserunt mollit anim id est laborum.]]
+end
+
+
+-- init.lua or plugin setup
+vim.api.nvim_create_user_command("LoremIpsum", function()
+  local text = lorem_paragraph()
+  vim.api.nvim_put({ text }, "l", true, true)
+end, {})
+
+
+-- Toggle colorcolumn between "80" and ""
+function toggle_colorcolumn()
+  local current = vim.opt.colorcolumn:get()
+  if current[1] == "" or current[1] == nil then
+    vim.opt.colorcolumn = "80"   -- enable at column 80
+    print("Colorcolumn enabled at 80")
+  else
+    vim.opt.colorcolumn = ""     -- disable
+    print("Colorcolumn disabled")
+  end
+end
+
+
+toggle_colorcolumn()
+
+vim.api.nvim_create_user_command("ToggleColorColumn", function()
+    toggle_colorcolumn()
+end, {})

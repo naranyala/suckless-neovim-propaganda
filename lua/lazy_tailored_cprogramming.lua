@@ -222,25 +222,25 @@ require("lazy").setup({
             })
         end,
     },
-    {
-        "nvim-tree/nvim-tree.lua",
-        dependencies = {
-            -- "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            require("nvim-tree").setup({
-                view = {
-                    width = 30,
-                },
-                renderer = {
-                    group_empty = true,
-                },
-                filters = {
-                    dotfiles = false,
-                },
-            })
-        end,
-    },
+    -- {
+    --     "nvim-tree/nvim-tree.lua",
+    --     dependencies = {
+    --         -- "nvim-tree/nvim-web-devicons",
+    --     },
+    --     config = function()
+    --         require("nvim-tree").setup({
+    --             view = {
+    --                 width = 30,
+    --             },
+    --             renderer = {
+    --                 group_empty = true,
+    --             },
+    --             filters = {
+    --                 dotfiles = false,
+    --             },
+    --         })
+    --     end,
+    -- },
     -- Statusline
     {
         "nvim-lualine/lualine.nvim",
@@ -332,13 +332,13 @@ require("lazy").setup({
             require('gitsigns').setup()
         end,
     },
-    {
-        "folke/tokyonight.nvim",
-        priority = 1000,
-        config = function()
-            vim.cmd.colorscheme("tokyonight")
-        end,
-    },
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     priority = 1000,
+    --     config = function()
+    --         vim.cmd.colorscheme("tokyonight")
+    --     end,
+    -- },
 
 
     -- Oil.nvim (alternative to neo-tree/nvim-tree)
