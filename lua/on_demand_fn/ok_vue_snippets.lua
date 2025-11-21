@@ -12,7 +12,8 @@ local previewers = require("telescope.previewers")
 local function insert_vue_snippet()
   -- Change this to wherever you store your golden .vue snippets
   -- local snippets_dir = vim.fn.stdpath("config") .. "/snippets_vue"
-  local snippets_dir = "/run/media/naranyala/Data/projects-remote/naravisuals-web/src/views/reusables"
+  -- local snippets_dir = "/run/media/naranyala/Data/projects-remote/naravisuals-web/src/views/reusables"
+  local snippets_dir = "/run/media/naranyala/Data/projects-remote/naravisuals-web/src/views/snippets/"
 
 
   -- Alternative: project-local → vim.fn.getcwd() .. "/.snippets/vue"

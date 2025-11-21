@@ -1,85 +1,34 @@
 -- SINGLE FILE NEOVIM CONFIG
 
+-- require("lazy_suckless_001")
+-- require("lazy_suckless_002")
+-- require("lazy_suckless_003")
+require("lazy_suckless_004")
 
-vim.opt.colorcolumn = ""     -- disable
-vim.o.sidescroll = 0
-vim.o.sidescrolloff = 0
-vim.opt.clipboard = "unnamedplus"   -- clipboard support
-vim.o.wrap = true                   -- Enable line wrapping
-vim.o.textwidth = 80                -- Optional: Set max text width for formatting
-vim.o.termguicolors = true
-vim.g.man_horiz = 1                 -- force horizontal split
-vim.g.man_split_mode = "rightbelow" -- place it on the right
-vim.opt.splitright = true           -- new vertical splits go to the right
-vim.g.loaded_nvim_web_devicons = 1
-
--- require("lazy_jsx_frontend") -- BEST
--- require("lazy_ocaml_first") -- BEST
--- require("lazy_scala_jvm") -- BEST
--- require("lazy_python_dart_fsharp") -- BEST
-
--- require("lazy_c_asm_toolchain")
--- require("lazy_tailored_cprogramming")
--- require("lazy_goto_definition") -- BEST
--- require("lazy_rustcode_focused")
-require("lazy_tpope_stack")
--- require("lazy_sophisticated")
--- require("lazy_alternative")
--- require("lazy_minimalism")
-
--- require("lazy_ergonomic_new")
--- require("lazy_vimscript")
--- require("lazy_ergonomic1")
--- require("lazy_ergonomic2")
--- require("lazy_readthedocs")
--- require("lazy_massive") -- BEST
--- require("lazy_standout") -- BEST
--- require("lazy_unique") -- BEST
---
--- require("lazy_gitfirst")
--- require("lazy_normal") -- BEST
--- require("lazy_normal_improved") -- BEST
--- require("lazy_research") -- BUG
--- require("lazy_llm_assistant") -- BUG
---
--- require("lazy_legacy") -- OK
--- require("lazy_primary") -- OK
--- require("lazy_with_lsp") -- OK
--- require("lazy_movement") -- OK
--- require("lazy_adventure") -- OK
--- require("lazy_lightweight") -- OK
-
--- require("lazy_enhanced") -- MEH
--- require("lazy_improved") -- MEH
--- require("lazy_ok") -- MEH
--- require("lazy_secondary") -- MEH
--- require("lazy_innovative") -- MEH
--- require("lazy_experiment") -- MEH
-
--- require("lazy_special") -- BUG
--- require("lazy_purist") -- BUG
--- require("lazy_modular") -- BUG
--- require("lazy_powerful") -- BUG
--- require("lazy_lowlevel") -- BUG
--- require("lazy_alternative") -- BUG
--- require("lazy_future") -- BUG
-
+-- require("best_legacy/lazy_tpope_stack")
+-- require("best_legacy/lazy_c_asm_toolchain")
+-- require("best_legacy/lazy_tailored_cprogramming")
+-- require("best_legacy/lazy_goto_definition") -- BEST
+-- require("best_legacy/lazy_rustcode_focused")
+-- require("best_legacy/lazy_sophisticated")
+-- require("best_legacy/lazy_alternative")
+-- require("best_legacy/lazy_minimalism")
 
 require("on_demand_fn.ok_features")
 require("on_demand_fn.ok_vue_snippets")
 require("on_demand_fn.ok_c99_snippets")
 
 
-require("lib.theme_paperlike_night").setup()
--- require("lib.theme_paperlike_day").setup()
--- require("lib.keybindings")
+-- require("lib_grepnav").setup()
 -- require("lib.simplenav")
 -- require("lib.simplenav").setup()
+-- require("lib.theme_paperlike_day").setup()
+require("lib.theme_paperlike_night").setup()
 require("lib.bookmark").setup()
 require("lib.disable_tabline")
 require("lib.ag_filepicker")
 require("lib.todo_search").setup()
--- require("lib_grepnav").setup()
+
 require("lib.grepnav").setup({
     engine_priority = { "rg" }, -- never fall back to plain grep
     root_markers = { ".git", "pyproject.toml", ".root" },
@@ -88,3 +37,6 @@ require("lib.grepnav").setup({
     window_height_ratio = 0.5,
     mappings = true,
 })
+
+
+

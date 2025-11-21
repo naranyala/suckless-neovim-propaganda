@@ -477,6 +477,32 @@ require("lazy").setup({
     end
   },
 
+{
+    'nvimdev/lspsaga.nvim',
+    config = function()
+        require('lspsaga').setup({})
+    end,
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter', -- optional
+        'nvim-tree/nvim-web-devicons',     -- optional
+    }
+},
+  {'lewis6991/satellite.nvim', config = function() 
+    require('satellite').setup()
+  end },{
+    'lewis6991/hover.nvim', config = function()
+require('hover').config({
+  providers = {
+    {
+      module = 'hover.providers.diagnostic',
+      priority = 2000,
+      name = 'Diags'
+    }
+  }
+})
+    end
+  }
+
   -- File management reimagined
   -- {
   --   "nvim-neo-tree/neo-tree.nvim",
