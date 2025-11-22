@@ -3,7 +3,11 @@
 -- require("lazy_suckless_001")
 -- require("lazy_suckless_002")
 -- require("lazy_suckless_003")
-require("lazy_suckless_004")
+-- require("lazy_suckless_004")
+-- require("lazy_suckless_005") -- OK
+-- require("lazy_suckless_006")
+require("lazy_suckless_007") -- BEST
+-- require("lazy_suckless_008")
 
 -- require("best_legacy/lazy_tpope_stack")
 -- require("best_legacy/lazy_c_asm_toolchain")
@@ -23,7 +27,8 @@ require("on_demand_fn.ok_c99_snippets")
 -- require("lib.simplenav")
 -- require("lib.simplenav").setup()
 -- require("lib.theme_paperlike_day").setup()
-require("lib.theme_paperlike_night").setup()
+-- require("lib.theme_paperlike_night").setup()
+
 require("lib.bookmark").setup()
 require("lib.disable_tabline")
 require("lib.ag_filepicker")

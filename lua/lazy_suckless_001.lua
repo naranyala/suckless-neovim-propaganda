@@ -10,8 +10,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-  require('./_shared/missing_native_apis'),
-  require('./_shared/tpope_goodies'),
+	require("./_shared/missing_native_apis"),
+	require("./_shared/tpope_goodies"),
+    require("./_shared/lualine_and_theme"),
 
   {"tpope/vim-surround"},
   {"tpope/vim-repeat"},

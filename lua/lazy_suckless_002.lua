@@ -79,8 +79,9 @@ M.toggle_floating_term = function()
 end
 
 require("lazy").setup({
-  require('./_shared/missing_native_apis'),
-  require('./_shared/tpope_goodies'),
+	require("./_shared/missing_native_apis"),
+	require("./_shared/tpope_goodies"),
+    require("./_shared/lualine_and_theme"),
 
   { "nvim-lua/plenary.nvim" },
   { "nvim-tree/nvim-web-devicons", opts = {} },

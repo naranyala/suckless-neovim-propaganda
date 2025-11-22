@@ -38,17 +38,9 @@ vim.opt.smartcase = true
 -- plugin setup
 -----------------------------------------------------------
 require("lazy").setup({
-  require('./_shared/missing_native_apis'),
-  require('./_shared/tpope_goodies'),
-
-  -- { "nvim-tree/nvim-web-devicons", lazy = true },
-
-  -- { -- statusline
-  --   "nvim-lualine/lualine.nvim",
-  --   opts = {
-  --     options = { theme = "auto", section_separators = "", component_separators = "" }
-  --   }
-  -- },
+	require("./_shared/missing_native_apis"),
+	require("./_shared/tpope_goodies"),
+    require("./_shared/lualine_and_theme"),
 
   { -- telescope
     "nvim-telescope/telescope.nvim",

@@ -21,8 +21,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Load plugins with lazy.nvim
 require("lazy").setup({
 
-  require('./_shared/missing_native_apis'),
-  require('./_shared/tpope_goodies'),
+	require("./_shared/missing_native_apis"),
+	require("./_shared/tpope_goodies"),
+    require("./_shared/lualine_and_theme"),
 
   -- Essential plugins
   {
