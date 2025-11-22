@@ -36,15 +36,15 @@ require("lazy").setup({
       })
     end,
   },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.tsserver.setup({})
-      lspconfig.html.setup({})
-      lspconfig.cssls.setup({})
-    end,
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   config = function()
+  --     local lspconfig = require("lspconfig")
+  --     lspconfig.tsserver.setup({})
+  --     lspconfig.html.setup({})
+  --     lspconfig.cssls.setup({})
+  --   end,
+  -- },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {

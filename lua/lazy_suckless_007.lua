@@ -1,41 +1,3 @@
--- ~/.config/nvim/init.lua
--- Suckless Neovim v3: alternative approaches, same principles
-
---[[
-ALTERNATIVE CONFIGS TO CONSIDER:
-================================
-
-1. ULTRA-MINIMAL (0 plugins)
-   - Use only built-in features
-   - Native LSP, netrw, omnifunc completion
-   - ~100 lines, instant startup
-   - Tradeoff: no syntax highlighting beyond regex, manual LSP setup
-
-2. CURRENT (this file): BALANCED MINIMAL (~10 plugins)
-   - Treesitter, LSP, fzf-lua, git signs
-   - Best ratio of features to complexity
-   - ~400 lines, <50ms startup
-
-3. HELIX-STYLE (selection-first)
-   - Different modal paradigm
-   - Consider just using Helix editor instead
-
-4. EMACS-STYLE (leader sequences)
-   - Longer key sequences, more mnemonic
-   - which-key helps discoverability
-   - Tradeoff: slower but more memorable
-
-SUGGESTIONS IMPLEMENTED BELOW:
-==============================
-- Option A: Completion (native vs nvim-cmp)
-- Option B: File explorer (netrw vs oil.nvim vs mini.files)
-- Option C: Colorscheme alternatives
-- Option D: Snippet support
-- Option E: Hardmode (force better habits)
-- Option F: Zen/focus mode
-- Option G: Session management
-- Option H: Better quickfix
---]]
 
 --------------------------------------------------------------------------------
 -- OPTIONS
@@ -65,7 +27,7 @@ o.inccommand = "split"
 o.grepprg = "rg --vimgrep --smart-case"
 o.grepformat = "%f:%l:%c:%m"
 o.completeopt = "menu,menuone,noselect,preview"
-o.shortmess:append("cI")
+-- o.shortmess:append("cI")
 o.fillchars = { eob = " ", vert = "│", fold = " " }
 o.foldmethod = "expr"
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -455,7 +417,7 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", event = "BufReadPost",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = { "lua", "vim", "vimdoc", "c", "python", "bash", "markdown", "json", "yaml" },
+                ensure_installed = { "lua", "vim", "vimdoc", "c", "python", "bash", "markdown", "json", "yaml", "typescript"},
                 highlight = { enable = true },
                 indent = { enable = true },
                 incremental_selection = {
@@ -566,33 +528,3 @@ require("lazy").setup({
     ui = { border = "rounded" },
 })
 
---------------------------------------------------------------------------------
--- QUICK REFERENCE
---------------------------------------------------------------------------------
---[[
-ALTERNATIVES SUMMARY:
----------------------
-Completion:  Native (current) | nvim-cmp (richer, more plugins)
-Explorer:    Netrw (current) | oil.nvim (edit fs as buffer) | mini.files
-Colorscheme: kanagawa | rose-pine | gruvbox-material | tokyonight
-Plugins:     tpope trio | mini.nvim (modular replacement)
-Hardmode:    Enable to force better habits
-Zen:         <leader>z for distraction-free writing
-
-KEY FEATURES:
--------------
-- Native completion with Tab/S-Tab/CR (works with LSP)
-- Treesitter incremental selection: <CR> expand, <BS> shrink
-- Zen mode: <leader>z
-- Session: <leader>ss save, <leader>sl load
-- Quickfix: <leader>qf toggle
-- LSP format: <leader>lf
-
-TO CUSTOMIZE:
--------------
-1. Uncomment LSP servers you need
-2. Choose completion: native or nvim-cmp
-3. Choose explorer: netrw or oil.nvim
-4. Choose plugins: tpope or mini.nvim
-5. Set hardmode = true to train vim motions
---]]

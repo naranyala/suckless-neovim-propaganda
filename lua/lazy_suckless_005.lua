@@ -177,13 +177,23 @@ require("lazy").setup({
     end
   },
 
+
+ {
+   "pmizio/typescript-tools.nvim",
+   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+   config = function()
+     require("typescript-tools").setup({})
+   end
+ },
+
   -- ESSENTIAL: Syntax and parsing
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "vim", "vimdoc", "query", "bash", "markdown", "python", "javascript", "typescript" },
+        -- ensure_installed = { "lua", "vim", "vimdoc", "query", "bash", "markdown", "python", "javascript", "typescript" },
+        ensure_installed = { "lua", "vim", "vimdoc", "c", "python", "bash", "markdown", "json", "yaml"},
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
@@ -346,18 +356,27 @@ require("lazy").setup({
   },
 
   -- QUALITY OF LIFE: Color scheme
+  -- {
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  --   config = function()
+  --     require("rose-pine").setup({
+  --       disable_background = false,
+  --       disable_float_background = false,
+  --     })
+  --     vim.cmd.colorscheme("rose-pine")
+  --   end
+  -- },
+
+
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "windwp/nvim-autopairs",
     config = function()
-      require("rose-pine").setup({
-        disable_background = false,
-        disable_float_background = false,
-      })
-      vim.cmd.colorscheme("rose-pine")
-    end
+      require("nvim-autopairs").setup({})
+    end,
   },
 
+  -- { "windwp/nvim-autopairs",    event = "InsertEnter", config = true },
   -- ERGONOMIC HACK: Smooth scrolling
   {
     "karb94/neoscroll.nvim",

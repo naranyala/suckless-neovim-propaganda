@@ -69,8 +69,8 @@ map("n", "<C-Right>", ":vertical resize +2<CR>")
 require("lazy").setup({
 
 
-	require("./_shared/missing_native_apis"),
-	require("./_shared/tpope_goodies"),
+    require("./_shared/missing_native_apis"),
+    require("./_shared/tpope_goodies"),
     require("./_shared/lualine_and_theme"),
 
   -- ── Colors & UI ─────────────────────────────────────

@@ -106,10 +106,10 @@ function toggle_colorcolumn()
   local current = vim.opt.colorcolumn:get()
   if current[1] == "" or current[1] == nil then
     vim.opt.colorcolumn = "80"   -- enable at column 80
-    print("Colorcolumn enabled at 80")
+    -- print("Colorcolumn enabled at 80")
   else
     vim.opt.colorcolumn = ""     -- disable
-    print("Colorcolumn disabled")
+    -- print("Colorcolumn disabled")
   end
 end
 
